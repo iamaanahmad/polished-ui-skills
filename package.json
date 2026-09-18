@@ -1,0 +1,42 @@
+{
+  "name": "polished-ui-skills",
+  "version": "1.0.0",
+  "description": "Install the polished-ui-design agent skill into any AI coding agent or IDE (Cursor, Kiro, Antigravity, Codex, Claude, Copilot, Windsurf, Gemini).",
+  "bin": {
+    "polished-ui-skills": "bin/cli.js"
+  },
+  "files": [
+    "bin/",
+    "skills/",
+    "adapters/",
+    "shared/",
+    "README.md",
+    "LICENSE"
+  ],
+  "type": "commonjs",
+  "engines": {
+    "node": ">=16"
+  },
+  "keywords": [
+    "ai",
+    "agent",
+    "skill",
+    "ui",
+    "design",
+    "cursor",
+    "kiro",
+    "antigravity",
+    "codex",
+    "claude",
+    "copilot",
+    "windsurf",
+    "gemini",
+    "agents.md",
+    "vibe-coding"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamaanahmad/polished-ui-skills.git"
+  },
+  "license": "MIT"
+}
