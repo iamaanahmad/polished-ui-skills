@@ -17,17 +17,17 @@ Run this in your project root — it auto-detects which agents you use and insta
 the rules in the right place and format for each:
 
 ```bash
-npx polished-ui-skills
+npx polished-ui-skills@latest
 ```
 
 Other modes:
 
 ```bash
-npx polished-ui-skills --all            # install for every supported agent
-npx polished-ui-skills --agent cursor   # install for one specific agent
-npx polished-ui-skills --list           # list supported agents + target paths
-npx polished-ui-skills --dir ./app      # target a different project root
-npx polished-ui-skills --help           # usage
+npx polished-ui-skills@latest --all            # install for every supported agent
+npx polished-ui-skills@latest --agent cursor   # install for one specific agent
+npx polished-ui-skills@latest --list           # list supported agents + target paths
+npx polished-ui-skills@latest --dir ./app      # target a different project root
+npx polished-ui-skills@latest --help           # usage
 ```
 
 The installer is **idempotent** and **non-destructive**: for shared files like
