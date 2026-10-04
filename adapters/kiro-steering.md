@@ -3,9 +3,6 @@ inclusion: fileMatch
 fileMatchPattern: "**/*.{tsx,jsx,vue,svelte,css,scss,html,astro,dart,kt,swift}"
 ---
 
-
----
-
 <!-- POLISHED-UI-SKILLS:BEGIN -->
 # Polished UI Skills
 
