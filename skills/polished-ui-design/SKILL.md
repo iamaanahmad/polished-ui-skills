@@ -2,123 +2,167 @@
 name: polished-ui-design
 description: >-
   Guides an agent to design, implement, audit, and refine polished production
-  web UI that avoids generic AI-generated aesthetics. Use for landing pages,
-  dashboards, apps, components, responsive layouts, interaction states,
-  accessibility, design systems, and UI quality reviews.
+  web and mobile UI. Covers product-specific visual systems, responsive web
+  layouts, native iOS/Android conventions, touch interaction, accessibility,
+  interaction states, and final UI quality audits.
 ---
 
 # Polished UI Design
 
-Build interfaces that feel intentional, product-specific, usable, and complete — not merely visually fashionable. Treat visual design, interaction design, responsive behavior, accessibility, and implementation consistency as one quality system.
+Build interfaces that feel intentional, product-specific, usable, accessible, and complete — not merely fashionable. Treat visual design, interaction design, responsive/adaptive behavior, accessibility, platform conventions, and implementation consistency as one quality system.
 
 ## Operating principles
 
-1. **Understand before styling.** Identify the product, primary user, primary task, brand character, content density, and technical constraints.
-2. **Preserve existing systems.** In an established product, inspect and extend its tokens/components before inventing new ones.
-3. **Constrain before generating.** Define a small visual system before producing large amounts of UI.
-4. **Hierarchy beats decoration.** Use typography, spacing, grouping, and contrast before gradients, shadows, glow, badges, or extra containers.
-5. **Design every state.** A polished default state with broken loading, error, empty, focus, or mobile states is not polished.
-6. **Verify, then refine.** Never assume the first render is finished.
+1. **Understand before styling.** Identify product, users, primary task, brand character, content density, platform, framework, and technical constraints.
+2. **Preserve existing systems.** Inspect and extend existing tokens/components before inventing new ones.
+3. **Constrain before generating.** Define hierarchy, type, color roles, spacing, surfaces, radius, icon, and control conventions before producing large amounts of UI.
+4. **Hierarchy beats decoration.** Use typography, spacing, grouping, imagery, and contrast before gradients, shadows, glow, badges, or extra containers.
+5. **Respect the platform.** Web, iOS, and Android have different interaction conventions. Cross-platform consistency does not mean identical UI.
+6. **Design every state.** A polished default with broken loading, error, empty, focus, keyboard, offline, or accessibility states is not polished.
+7. **Verify, then refine.** Never assume the first render is finished.
 
 ## Workflow
 
 ### 1. Read the product context
-Before editing UI, inspect existing styles, components, tokens, fonts, icons, screenshots, and conventions. Infer the intended visual language from the product rather than imposing a fashionable default.
 
-If key context is genuinely missing, establish a restrained direction:
+Inspect existing styles, components, tokens, fonts, icons, screenshots, navigation, and conventions. Infer the intended visual language from the product rather than imposing a fashionable default.
+
+If key context is missing, establish a restrained direction:
 - one dominant/brand color, one accent when needed, and a neutral scale
 - a fixed spacing scale
 - a limited type scale with deliberate font choices
 - consistent radius, border, elevation, icon, and control conventions
 - semantic design tokens rather than scattered raw values
 
-See `references/design-tokens.md`.
+See references/design-tokens.md.
 
-### 2. Design the information hierarchy
+### 2. Select the platform layer
+
+Load only relevant guidance:
+
+- **Web:** responsive-layout.md, accessibility.md, interaction-states.md
+- **React Native / Expo:** mobile layout, touch, mobile accessibility, interaction states, plus iOS/Android guidance as applicable
+- **Flutter:** same mobile core, then platform-specific behavior for the target OS
+- **SwiftUI / UIKit:** mobile core + ios-patterns.md
+- **Jetpack Compose / Android Views:** mobile core + android-patterns.md
+
+See references/platform-selection.md.
+
+Do not copy desktop UI into a phone. Do not make iOS and Android identical when platform conventions improve usability.
+
+### 3. Design the information hierarchy
+
 Before polishing surfaces, decide:
-- page purpose and primary action
+- page/screen purpose and primary action
 - content priority and reading order
+- navigation structure
 - which elements deserve emphasis
-- which content belongs together
+- what belongs together
 - what can be removed
 
-Do not solve weak hierarchy by adding more cards, colors, pills, dividers, or headings.
+For mobile, prioritize task-critical content, primary action, navigation/context, supporting information, then decoration.
 
-### 3. Implement responsively
-Build from relationships and content constraints, not screenshots at one viewport. Avoid fixed dimensions that fail with longer content. Define a deliberate narrow-screen strategy for navigation, tables, dashboards, toolbars, and dense forms.
+### 4. Implement for the environment
 
-See `references/responsive-layout.md`.
+**Web**
+- Build around content and relationships, not screenshots at one viewport.
+- Use responsive CSS and intrinsic layout.
+- Define deliberate narrow-screen behavior for navigation, tables, dashboards, toolbars, and forms.
+- Ensure keyboard and pointer interactions both work.
 
-### 4. Complete interaction states
-For relevant controls and flows implement default, hover, focus-visible, active/pressed, selected, disabled, loading, success, error, and empty states. Give actions immediate feedback and preserve user input after recoverable errors.
+**Mobile**
+- Respect safe areas, system bars, insets, edge-to-edge, system gestures, keyboard/IME, and platform navigation.
+- Use fluid/adaptive layouts rather than fixed heights.
+- Design for touch and large text; never rely on hover.
+- Consider phone, tablet, foldable, orientation, and offline/network states where relevant.
 
-Motion should explain state or relationship, not decorate empty space.
+See references/mobile-layout.md and references/touch-interactions.md.
 
-See `references/interaction-states.md`.
+### 5. Complete interaction states
 
-### 5. Build accessibility into the component
-Use semantic HTML, keyboard-operable controls, visible focus, programmatic labels, non-color cues, readable contrast, sensible heading/DOM order, and reduced-motion support. Accessibility is part of component correctness.
+For relevant controls and flows implement default, hover (web), focus-visible, active/pressed, selected, disabled, loading, success, error, empty, offline, and skeleton states.
 
-See `references/accessibility.md`.
+Give actions immediate feedback. Preserve recoverable input after errors. Make destructive actions explicit.
 
-### 6. Critique the visual language
-Review against `references/anti-patterns.md`. In particular, challenge:
-- generic purple/indigo gradients
-- decorative glow and glass effects
-- emojis used as interface icons
-- cards around every section
-- excessive pills/badges
-- meaningless colored status dots
-- too many competing accent colors
-- arbitrary values that bypass the system
-- excessive centered marketing copy
-- decorative complexity without product meaning
+Motion should explain state, hierarchy, progress, or relationship—not decorate empty space.
 
-Do not mechanically ban a technique. Keep it when it clearly serves the brand, hierarchy, or interaction.
+See references/interaction-states.md.
 
-### 7. Run a refinement pass
-Use `references/ui-audit.md`. Fix issues you find unless the user requested review-only. Test realistic content, narrow and wide layouts, keyboard navigation, and important non-happy paths.
+### 6. Build accessibility into the component
 
-### 8. Add guardrails
-For ongoing projects, encode repeated decisions as tokens/components and use linting or project conventions to prevent arbitrary values and visual drift.
+Use semantic/native controls, meaningful labels, visible focus, logical reading order, non-color cues, readable contrast, scalable text, and reduced-motion support.
+
+For mobile, support platform text scaling/Dynamic Type, screen-reader semantics, large text, accessible states, and appropriate touch targets.
+
+See references/accessibility.md and references/mobile-accessibility.md.
+
+### 7. Critique the visual language
+
+Review references/anti-patterns.md. Challenge generic purple/indigo gradients, decorative glow/glass, emoji UI chrome, card-everything layouts, excessive pills/badges, meaningless status dots, competing accents, arbitrary values, and decorative complexity without product meaning.
+
+These are warning signs, not absolute bans. Keep a technique when it clearly serves product identity, hierarchy, or interaction.
+
+### 8. Run the correct audit
+
+- Web: references/ui-audit.md
+- Mobile: references/mobile-audit.md
+- iOS: also check ios-patterns.md
+- Android: also check android-patterns.md
+
+Fix issues you find unless review-only was requested. Test realistic content and important non-happy paths.
+
+### 9. Add guardrails
+
+For ongoing projects, encode repeated decisions as tokens/components and project conventions. Prefer existing components over parallel UI systems. Keep platform-specific variants explicit rather than hiding platform differences inside arbitrary conditionals.
 
 ## Decision rules
 
-- Prefer existing project components over introducing another UI system.
-- Prefer semantic tokens over raw hex values in components.
+- Prefer existing project components over another UI system.
+- Prefer semantic tokens over raw values in components.
 - Prefer whitespace/grouping over unnecessary containers.
 - Prefer one strong focal point over many equal accents.
-- Prefer real copy/content structure over placeholder-shaped design.
+- Prefer real content structure over placeholder-shaped design.
 - Prefer familiar interaction patterns unless novelty creates measurable value.
-- Prefer responsive CSS and intrinsic layout over JS-driven viewport branching.
+- Prefer responsive/adaptive layout over JS-driven viewport branching.
 - Prefer a consistent icon family; do not mix icon styles casually.
-- Use gradients, glass, glow, oversized type, and motion only when they fit the product's identity.
+- Use gradients, glass, glow, oversized type, and motion only when they fit the product.
 - Do not change product behavior merely to make a screen prettier.
+- Do not use web hover patterns as a substitute for mobile interaction.
+- Do not make iOS and Android identical when platform conventions materially improve usability.
 
 ## Pre-ship gate
 
-Do not call the UI finished until the relevant checks pass:
-
-- [ ] The page has an obvious purpose and primary action.
-- [ ] The result looks specific to this product, not a generic AI/SaaS template.
-- [ ] Color, spacing, typography, radius, icons, and surfaces are systematic.
-- [ ] Mobile/narrow layouts are intentional and free of accidental overflow.
-- [ ] Long content and unusual data do not destroy the layout.
-- [ ] Interactive elements have complete relevant states.
-- [ ] Keyboard focus is visible and the primary flow is operable.
-- [ ] Labels, errors, and statuses do not rely on color alone.
-- [ ] Motion is purposeful and reduced-motion is respected.
-- [ ] Decorative elements earn their presence.
-- [ ] Empty/loading/error/success states are considered where applicable.
-- [ ] A final audit/refinement pass has been performed.
+- [ ] Clear purpose and primary action
+- [ ] Product-specific visual identity
+- [ ] Systematic color/type/spacing/radius/icon/surface choices
+- [ ] Correct platform/framework guidance applied
+- [ ] Responsive/adaptive with no accidental overflow or clipping
+- [ ] Realistic long content and localization considered
+- [ ] Complete relevant interaction states
+- [ ] Keyboard/pointer flow works on web; touch/gesture flow works on mobile
+- [ ] Navigation and back behavior are predictable
+- [ ] Accessibility semantics, focus, labels, text scaling, and non-color cues considered
+- [ ] Safe areas/insets/keyboard behavior considered on mobile
+- [ ] Reduced motion respected
+- [ ] Loading/error/empty/offline/success states considered
+- [ ] Decorative elements earn their presence
+- [ ] Final platform-specific audit/refinement completed
 
 ## Reference files
 
-Load only the references relevant to the current task:
-- `references/design-tokens.md` — token architecture and implementation guardrails
-- `references/anti-patterns.md` — common AI-generated visual tells and corrections
-- `references/prompting.md` — iterative prompting and context template
-- `references/responsive-layout.md` — responsive and content-resilient layout
-- `references/interaction-states.md` — states, feedback, errors, loading, and motion
-- `references/accessibility.md` — semantic, keyboard, focus, labeling, and inclusive UI
-- `references/ui-audit.md` — systematic final refinement pass
+Load only what the task needs:
+- references/platform-selection.md — detect platform and layer guidance
+- references/design-tokens.md — token architecture and guardrails
+- references/anti-patterns.md — common AI-generated visual tells
+- references/prompting.md — iterative prompting/context template
+- references/responsive-layout.md — responsive web/content resilience
+- references/interaction-states.md — states, feedback, errors, loading, motion
+- references/accessibility.md — web semantics, keyboard, focus, labeling
+- references/mobile-layout.md — mobile/adaptive layout and keyboard behavior
+- references/mobile-navigation.md — mobile navigation and back behavior
+- references/touch-interactions.md — touch targets, gestures, feedback
+- references/mobile-accessibility.md — mobile semantics and text scaling
+- references/ios-patterns.md — iOS conventions
+- references/android-patterns.md — Android conventions
+- references/ui-audit.md — web refinement audit
+- references/mobile-audit.md — mobile refinement audit
