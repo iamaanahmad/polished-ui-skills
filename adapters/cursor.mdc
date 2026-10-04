@@ -1,61 +1,67 @@
 ---
-description: Polished UI design rules — product-specific, responsive, accessible, and refined.
-globs: ["**/*.tsx", "**/*.jsx", "**/*.vue", "**/*.svelte", "**/*.css", "**/*.scss", "**/*.html", "**/*.astro"]
+description: Polished UI rules — product-specific, responsive/adaptive, accessible, and platform-aware.
+globs: ["**/*.{tsx,jsx,vue,svelte,css,scss,html,astro,dart,kt,swift}"]
 alwaysApply: false
 ---
 
 <!-- POLISHED-UI-SKILLS:BEGIN -->
-# Polished UI Design Rules
+# Polished UI Skills
 
-Build UI that is product-specific, usable, accessible, responsive, and visually intentional. Avoid generic AI-generated aesthetics, but do not ban techniques that genuinely serve the brand.
+Use this skill when building, reviewing, or refining web or mobile UI. Detect the platform/framework first; preserve the existing product system; apply platform-specific guidance rather than forcing one visual language everywhere.
 
 ## Workflow
-1. **Understand first.** Inspect existing tokens, components, fonts, icons, screenshots, and conventions. Preserve the product's system.
-2. **Constrain first.** Establish hierarchy, color roles, spacing, type, radius, surfaces, and icon conventions before generating large amounts of UI.
-3. **Design the task flow.** Define page purpose, primary action, content priority, grouping, and what can be removed. Hierarchy beats decoration.
-4. **Generate responsively.** Build around content and relationships; avoid fixed dimensions and accidental overflow.
-5. **Complete states.** Handle relevant default, hover, focus-visible, active, selected, disabled, loading, success, error, and empty states.
-6. **Audit and refine.** Test realistic content, narrow/wide layouts, keyboard flow, and non-happy paths. Fix issues before calling UI finished.
+
+1. Understand product, task, platform, framework, existing tokens/components, and conventions.
+2. Constrain hierarchy, type, color, spacing, radius, surfaces, icons, and controls before generating large UI.
+3. Build for the environment: responsive web or adaptive/touch-first mobile.
+4. Complete relevant default, hover (web), focus, pressed, selected, disabled, loading, success, error, empty, and offline states.
+5. Audit accessibility, content resilience, platform behavior, and visual restraint before shipping.
+
+## Platform rules
+
+- **Web:** responsive CSS, intrinsic layout, keyboard/pointer interaction, visible focus, semantic HTML.
+- **React Native / Expo / Flutter:** mobile layout, touch, keyboard/IME, safe areas/insets, system gestures, adaptive layouts, plus the target OS conventions.
+- **SwiftUI / UIKit:** follow iOS navigation, Dynamic Type, safe areas, sheets, tab bars, and familiar system behavior.
+- **Jetpack Compose / Android Views:** follow Material/Android conventions, adaptive windows, system back, edge-to-edge/insets, and large text.
+
+Do not copy desktop UI into a phone. Do not make iOS and Android identical when platform conventions improve usability.
 
 ## Visual rules
-- Use semantic tokens and consistent spacing/type/radius/icon/surface systems.
-- Prefer whitespace, typography, and grouping before extra cards, borders, shadows, gradients, glow, pills, or badges.
+
+- Prefer hierarchy, whitespace, typography, imagery, and grouping before extra cards, borders, shadows, gradients, glow, pills, or badges.
 - Avoid generic purple/indigo gradients, decorative glow, emoji UI chrome, card-everything layouts, rainbow accents, and meaningless status dots.
-- Treat these as warning signs, not absolute bans: keep a technique when it clearly serves product identity, hierarchy, or interaction.
-- Use one dominant color and scarce accents unless the product has a strong reason for more.
-- Prefer existing project components over introducing a parallel UI system.
+- Treat these as warning signs, not absolute bans.
+- Prefer existing project components and semantic tokens.
+- Never rely on web hover as a mobile interaction.
+- Never shrink text or touch targets just to fit more content.
 
 ## Accessibility
-- Prefer semantic HTML and native controls.
-- All interactive elements need keyboard access and visible focus.
-- Icon-only controls need accessible names; inputs need real labels.
-- Do not communicate essential meaning with color alone.
-- Preserve logical heading/DOM order and support reduced motion.
-- Keep text readable and touch targets usable.
 
-## Responsive/content resilience
-- Test narrow mobile, tablet/laptop, and wide desktop.
-- Test long labels, localization expansion, zero/one/many results, missing media, errors, and slow loading.
+- Use semantic/native controls with meaningful names, labels, roles, and states.
+- Web: keyboard access, visible focus, logical DOM order, readable contrast.
+- Mobile: screen-reader semantics, text scaling/large text, logical focus order, comfortable touch targets.
+- Do not communicate essential meaning through color, animation, haptics, or sound alone.
+- Respect reduced-motion and platform accessibility preferences.
+
+## Responsive/adaptive resilience
+
+- Web: test narrow mobile, tablet/laptop, and wide desktop.
+- Mobile: test relevant phone/tablet/foldable sizes, orientation, safe areas, and keyboard states.
+- Test long labels, localization, zero/one/many results, missing media, slow/offline loading, and large text.
 - Avoid fixed heights for content that can grow.
-- Give tables, navigation, toolbars, and dense forms a deliberate narrow-screen behavior.
-
-## Interaction
-- Give important actions immediate feedback and preserve recoverable input after errors.
-- Loading states should avoid unnecessary layout shifts.
-- Empty states should explain the situation and offer a useful next step.
-- Motion should communicate state, hierarchy, progress, or relationship—not merely decorate.
 
 ## Pre-ship gate
-- [ ] Clear purpose and primary action
+
+- [ ] Clear task and primary action
 - [ ] Product-specific visual identity
-- [ ] Systematic color/type/spacing/radius/icon/surface choices
-- [ ] Responsive with no accidental overflow
-- [ ] Resilient to realistic content
+- [ ] Systematic visual tokens
+- [ ] Correct platform/framework conventions
+- [ ] No accidental overflow/clipping
 - [ ] Complete relevant interaction states
-- [ ] Keyboard-operable primary flow with visible focus
-- [ ] Labels/errors/statuses do not rely on color alone
-- [ ] Reduced motion respected
-- [ ] Empty/loading/error/success states considered
-- [ ] Decorative elements earn their presence
-- [ ] Final audit/refinement pass completed
+- [ ] Keyboard/pointer or touch/gesture flow works
+- [ ] Navigation/back behavior is predictable
+- [ ] Accessibility semantics, labels, focus, text scaling, and non-color cues
+- [ ] Safe areas/insets/keyboard behavior on mobile
+- [ ] Loading/error/empty/offline states considered
+- [ ] Final platform-specific audit completed
 <!-- POLISHED-UI-SKILLS:END -->
