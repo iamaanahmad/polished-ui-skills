@@ -1,7 +1,7 @@
 {
   "name": "polished-ui-skills",
-  "version": "2.0.0",
-  "description": "Portable agent skills that help AI coding agents build polished, accessible, responsive, product-specific web UI.",
+  "version": "2.1.0",
+  "description": "Portable agent skills that help AI coding agents build polished, accessible, responsive, adaptive, product-specific web and mobile UI.",
   "homepage": "https://github.com/iamaanahmad/polished-ui-skills#readme",
   "bugs": {
     "url": "https://github.com/iamaanahmad/polished-ui-skills/issues"

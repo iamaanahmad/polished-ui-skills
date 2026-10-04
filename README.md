@@ -1,15 +1,15 @@
 # Polished UI Skills
 
-> **v2.0.0 — Production UI quality upgrade**
+> **v2.1.0 — Cross-platform UI quality upgrade**
 
 Polished UI Skills now covers the full UI quality loop: **design system → hierarchy → responsive layout → interaction states → accessibility → audit/refinement**.
 
 A portable [Agent Skill](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills)
-that guides AI coding agents to produce **polished, professional web UI** instead
+that guides AI coding agents to produce **polished, professional web and mobile UI** instead
 of the generic "AI slop" / "vibe coded" look — with **one-command install** for
 every major AI coding agent and IDE.
 
-The problem it solves: left unconstrained, an AI generates the *statistical
+It supports **Web, React Native/Expo, Flutter, SwiftUI/UIKit, and Jetpack Compose/Android Views** while preserving platform conventions instead of forcing one design language across every device.\n\nThe problem it solves: left unconstrained, an AI generates the *statistical
 average* of its training data — purple gradients, Inter everywhere, glowing
 cards, emojis as icons, and a card around every block. This skill gives the agent
 the constraints, checklist, and workflow to make deliberate, brand-appropriate
@@ -96,7 +96,7 @@ Prefer to copy files yourself? Use the table above to place the matching adapter
 **Constrain first (design system) → generate against the constraints → critique
 against the anti-pattern checklist → add guardrails so quality holds.**
 
-The v2 workflow goes beyond visual anti-patterns: agents are explicitly pushed to validate responsive behavior, interaction states, keyboard accessibility, content resilience, reduced motion, and a final refinement audit. See
+The v2.1 workflow goes beyond visual anti-patterns: agents are explicitly pushed to validate responsive behavior, interaction states, keyboard accessibility, content resilience, reduced motion, and a final refinement audit. See
 [`skills/polished-ui-design/references/anti-patterns.md`](skills/polished-ui-design/references/anti-patterns.md).
 
 ## Sources
@@ -116,3 +116,40 @@ GitHub Copilot custom instructions, Windsurf rules, Gemini CLI).
 ## License
 
 MIT — see [LICENSE](LICENSE).
+
+
+## How to use the skill
+
+Give the agent a normal UI task. The skill is designed to select the smallest relevant guidance set automatically.
+
+**Web**
+- Use responsive layout, web accessibility, interaction-state, and UI-audit guidance.
+- Validate keyboard + pointer behavior and narrow/wide layouts.
+
+**Mobile / React Native / Expo / Flutter**
+- Use mobile layout, navigation, touch, mobile accessibility, and interaction-state guidance.
+- Apply the target platform's conventions rather than shrinking desktop UI.
+
+**iOS / SwiftUI / UIKit**
+- Add iOS patterns: navigation stacks, tab bars, sheets, safe areas, Dynamic Type, VoiceOver, and expected system behavior.
+
+**Android / Jetpack Compose / Views**
+- Add Android patterns: Material conventions, adaptive windows, system back, edge-to-edge/insets, large text, and TalkBack.
+
+**Cross-platform products**
+- Share the core design system, but allow platform-specific navigation, controls, gestures, and behavior where that improves usability.
+
+### Recommended agent instruction
+
+When asking an agent to build or refine UI, include the product context and let the skill handle the quality pass:
+
+```
+Build/refine this UI for [product/task].
+Target: [web / React Native / Expo / Flutter / iOS / Android].
+Preserve the existing design system and components.
+Use the Polished UI Skills workflow, apply the correct platform guidance,
+implement all relevant interaction/accessibility states, and run the
+platform-specific audit before considering it finished.
+```
+
+The key principle is **not “make everything beautiful.”** It is: **understand the product → choose the right platform conventions → constrain the system → implement the task flow → test real states → audit and refine.**
