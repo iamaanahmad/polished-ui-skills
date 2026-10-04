@@ -6,44 +6,55 @@ fileMatchPattern: "**/*.{tsx,jsx,vue,svelte,css,scss,html,astro}"
 <!-- POLISHED-UI-SKILLS:BEGIN -->
 # Polished UI Design Rules
 
-Produce polished, professional UI. Avoid the generic "AI slop" / "vibe coded"
-look — the statistical average of training data. Make deliberate choices grounded
-in the product, the user, and the brand.
+Build UI that is product-specific, usable, accessible, responsive, and visually intentional. Avoid generic AI-generated aesthetics, but do not ban techniques that genuinely serve the brand.
 
-## Workflow (do not skip step 1)
+## Workflow
+1. **Understand first.** Inspect existing tokens, components, fonts, icons, screenshots, and conventions. Preserve the product's system.
+2. **Constrain first.** Establish hierarchy, color roles, spacing, type, radius, surfaces, and icon conventions before generating large amounts of UI.
+3. **Design the task flow.** Define page purpose, primary action, content priority, grouping, and what can be removed. Hierarchy beats decoration.
+4. **Generate responsively.** Build around content and relationships; avoid fixed dimensions and accidental overflow.
+5. **Complete states.** Handle relevant default, hover, focus-visible, active, selected, disabled, loading, success, error, and empty states.
+6. **Audit and refine.** Test realistic content, narrow/wide layouts, keyboard flow, and non-happy paths. Fix issues before calling UI finished.
 
-1. **Constrain first.** Establish a minimal design system before generating UI:
-   one dominant color + one accent + one neutral scale; a fixed spacing scale
-   (4/8/12/16/24/32/48/64); a limited type scale with a deliberate font (not
-   reflexively Inter). Encode as tokens (CSS variables + tokens file).
-2. **Generate against the constraints.** Supply tokens + framework config + a
-   visual reference. Be specific about what "good" means for THIS product.
-3. **Critique against the anti-patterns** below. Never ship the first output.
-4. **Add guardrails.** Lint against arbitrary values; pre-commit checks.
+## Visual rules
+- Use semantic tokens and consistent spacing/type/radius/icon/surface systems.
+- Prefer whitespace, typography, and grouping before extra cards, borders, shadows, gradients, glow, pills, or badges.
+- Avoid generic purple/indigo gradients, decorative glow, emoji UI chrome, card-everything layouts, rainbow accents, and meaningless status dots.
+- Treat these as warning signs, not absolute bans: keep a technique when it clearly serves product identity, hierarchy, or interaction.
+- Use one dominant color and scarce accents unless the product has a strong reason for more.
+- Prefer existing project components over introducing a parallel UI system.
 
-## Anti-patterns to avoid
+## Accessibility
+- Prefer semantic HTML and native controls.
+- All interactive elements need keyboard access and visible focus.
+- Icon-only controls need accessible names; inputs need real labels.
+- Do not communicate essential meaning with color alone.
+- Preserve logical heading/DOM order and support reduced motion.
+- Keep text readable and touch targets usable.
 
-1. Neon palettes with no hierarchy → one dominant color, one accent, one neutral.
-2. Decorative dark-mode glow → earn depth via typography/contrast/surfaces.
-3. Emojis as UI chrome → use a consistent icon system; emojis in microcopy only.
-4. Purple/indigo gradient on everything → derive color from brand and audience.
-5. Cards for every block → group with whitespace; cards = independent/interactive only.
-6. Rainbow side-tab accents → accent color is scarce; define what gets it and why.
-7. Meaningless status dots → every indicator maps to a defined, labeled state.
+## Responsive/content resilience
+- Test narrow mobile, tablet/laptop, and wide desktop.
+- Test long labels, localization expansion, zero/one/many results, missing media, errors, and slow loading.
+- Avoid fixed heights for content that can grow.
+- Give tables, navigation, toolbars, and dense forms a deliberate narrow-screen behavior.
 
-## Token guidance
+## Interaction
+- Give important actions immediate feedback and preserve recoverable input after errors.
+- Loading states should avoid unnecessary layout shifts.
+- Empty states should explain the situation and offer a useful next step.
+- Motion should communicate state, hierarchy, progress, or relationship—not merely decorate.
 
-- Semantic tokens (`text-foreground`, `bg-background`), never raw hex in components.
-- Spacing scale only — no arbitrary values (`p-[13px]`).
-- Prefer Tailwind + shadcn/ui. Same semantic names in light/dark; only values swap.
-
-## Pre-ship self-check
-
-- [ ] ONE dominant color, not competing neons?
-- [ ] Every color/effect communicates hierarchy or state?
-- [ ] Cards reserved for independent/interactive blocks?
-- [ ] Spacing from the scale (no arbitrary values)?
-- [ ] Consistent icon set (no emoji chrome)?
-- [ ] Status indicators map to a defined, labeled state?
-- [ ] Looks at home for THIS brand — not any generic AI product?
+## Pre-ship gate
+- [ ] Clear purpose and primary action
+- [ ] Product-specific visual identity
+- [ ] Systematic color/type/spacing/radius/icon/surface choices
+- [ ] Responsive with no accidental overflow
+- [ ] Resilient to realistic content
+- [ ] Complete relevant interaction states
+- [ ] Keyboard-operable primary flow with visible focus
+- [ ] Labels/errors/statuses do not rely on color alone
+- [ ] Reduced motion respected
+- [ ] Empty/loading/error/success states considered
+- [ ] Decorative elements earn their presence
+- [ ] Final audit/refinement pass completed
 <!-- POLISHED-UI-SKILLS:END -->
