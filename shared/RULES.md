@@ -1,51 +1,63 @@
 # Polished UI Design Rules
 
-Produce polished, professional UI. Avoid the generic "AI slop" / "vibe coded"
-look — the statistical average of training data. Make deliberate choices grounded
-in the product, the user, and the brand.
+Build UI that is product-specific, usable, accessible, responsive, and visually intentional. Avoid generic AI-generated aesthetics, but do not ban techniques that genuinely serve the brand.
 
-## Workflow (do not skip step 1)
+## Workflow
 
-1. **Constrain first.** Before generating any UI, establish a minimal design
-   system: one dominant color + one accent + one neutral scale; a fixed spacing
-   scale (4/8/12/16/24/32/48/64); a limited type scale with a deliberate font
-   (not reflexively Inter). Encode as tokens (CSS variables + tokens file).
-2. **Generate against the constraints.** Supply tokens + framework config + a
-   visual reference. Be specific about what "good" means for THIS product.
-   "Make it modern" reverts to defaults — don't.
-3. **Critique against the anti-patterns** (below). Never ship the first output.
-4. **Add guardrails.** Lint against arbitrary values; pre-commit checks.
+1. **Understand first.** Inspect existing tokens, components, fonts, icons, screenshots, and conventions. Preserve the product's system instead of replacing it.
+2. **Constrain first.** Establish hierarchy, color roles, spacing, type, radius, surfaces, and icon conventions before generating large amounts of UI.
+3. **Design the task flow.** Define the page purpose, primary action, content priority, grouping, and what can be removed. Hierarchy beats decoration.
+4. **Generate responsively.** Build around content and relationships; avoid fixed dimensions and accidental overflow. Give dense mobile layouts an explicit strategy.
+5. **Complete states.** Handle relevant default, hover, focus-visible, active, selected, disabled, loading, success, error, and empty states.
+6. **Audit and refine.** Test realistic content, narrow/wide layouts, keyboard flow, and non-happy paths. Fix issues before calling UI finished.
 
-## Anti-patterns to avoid (the tells of vibe-coded UI)
+## Visual rules
 
-1. **Neon palettes with no hierarchy** — 5–6 saturated colors competing.
-   → One dominant color, one accent, one neutral. Hierarchy from restraint.
-2. **Decorative dark-mode glow** — aurora/radial bloom that means nothing.
-   → Earn depth via typography, contrast, surface levels. No purposeless effects.
-3. **Emojis as UI chrome** — emojis as nav icons/bullets/headers.
-   → Use a consistent icon system. Emojis belong in microcopy only.
-4. **Purple/indigo gradient on everything.**
-   → Derive color from brand and audience, not trend.
-5. **Cards for every block** — cards nested in cards.
-   → Group with whitespace, proximity, typography. Cards = independent/interactive only.
-6. **Multicolored side tabs on every block** — rainbow accents, no logic.
-   → Accent color is a scarce, shared resource. Define what gets it and why.
-7. **Status dots that mean nothing** — colored dots with no defined state.
-   → Every indicator maps to a defined, labeled state, or it's removed.
+- Use semantic tokens, not scattered raw colors.
+- Use a consistent spacing/type/radius/icon system.
+- Prefer whitespace, typography, and grouping before extra cards, borders, shadows, gradients, glow, pills, or badges.
+- Avoid generic purple/indigo gradients, decorative dark-mode glow, emoji UI chrome, card-everything layouts, rainbow accents, and meaningless status dots.
+- These are warning signs, not absolute bans: keep a technique when it clearly serves product identity, hierarchy, or interaction.
+- Use one dominant color and scarce accents unless the product has a strong reason for more.
+- Do not use arbitrary spacing values when the project has a token scale.
+- Prefer the project's existing components over introducing a parallel UI system.
 
-## Token guidance
+## Accessibility
 
-- Use semantic tokens (`text-foreground`, `bg-background`), never raw hex in components.
-- Use the spacing scale — no arbitrary values (`p-[13px]`).
-- Prefer Tailwind + shadcn/ui: self-documenting, AI-legible, theme via CSS variables.
-- Same semantic token names in light/dark; only values swap. Avoid scattered `dark:` prefixes.
+- Prefer semantic HTML and native controls.
+- All interactive elements need keyboard access and visible focus.
+- Icon-only controls need accessible names; inputs need real labels.
+- Do not communicate essential meaning with color alone.
+- Preserve logical heading and DOM order.
+- Support reduced motion and keep essential information understandable without animation.
+- Keep text readable and touch targets usable.
 
-## Pre-ship self-check
+## Responsive/content resilience
 
-- [ ] ONE dominant color, not competing neons?
-- [ ] Every color/effect communicates hierarchy or state (nothing purely decorative)?
-- [ ] Cards reserved for genuinely independent/interactive blocks?
-- [ ] Spacing from the scale (no arbitrary values)?
-- [ ] Consistent icon set (no emoji chrome)?
-- [ ] Status indicators map to a defined, labeled state?
-- [ ] Looks at home for THIS brand — not any generic AI product?
+- Test narrow mobile, tablet/laptop, and wide desktop states.
+- Test long labels, localization expansion, zero/one/many results, missing media, errors, and slow loading.
+- Avoid fixed heights for content that can grow.
+- Give tables, navigation, toolbars, and dense forms a deliberate narrow-screen behavior.
+
+## Interaction
+
+- Give important actions immediate feedback.
+- Preserve recoverable user input after errors.
+- Loading states should avoid unnecessary layout shifts.
+- Empty states should explain the situation and offer a useful next step when possible.
+- Motion should communicate state, hierarchy, progress, or relationship—not merely decorate.
+
+## Pre-ship gate
+
+- [ ] Clear purpose and primary action
+- [ ] Product-specific visual identity
+- [ ] Systematic color/type/spacing/radius/icon/surface choices
+- [ ] Responsive with no accidental overflow
+- [ ] Resilient to realistic content
+- [ ] Complete relevant interaction states
+- [ ] Keyboard-operable primary flow with visible focus
+- [ ] Labels/errors/statuses do not rely on color alone
+- [ ] Reduced motion respected
+- [ ] Empty/loading/error/success states considered
+- [ ] Decorative elements earn their presence
+- [ ] Final audit/refinement pass completed
