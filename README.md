@@ -153,3 +153,24 @@ platform-specific audit before considering it finished.
 ```
 
 The key principle is **not “make everything beautiful.”** It is: **understand the product → choose the right platform conventions → constrain the system → implement the task flow → test real states → audit and refine.**
+
+## Publishing releases
+
+Releases are published to npm by [GitHub Actions](.github/workflows/publish.yml)
+when a `v*.*.*` tag is pushed. The workflow uses npm Trusted Publishing and
+provenance, and verifies that the tag matches the version in `package.json`.
+
+For the one-time setup, add this repository as a trusted publisher for the
+`polished-ui-skills` package in npm package settings:
+
+- GitHub organization or user: `iamaanahmad`
+- Repository: `polished-ui-skills`
+- Workflow filename: `publish.yml`
+
+To publish a release, update `package.json`, merge the change to `main`, then
+create and push the matching tag:
+
+```bash
+git tag v2.2.0
+git push origin v2.2.0
+```
