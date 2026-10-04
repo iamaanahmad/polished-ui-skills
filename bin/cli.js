@@ -25,50 +25,7 @@ const END = '<!-- POLISHED-UI-SKILLS:END -->';
 // Content (embedded so `npx` works without the repo checked out)
 // ---------------------------------------------------------------------------
 
-const RULES_BODY = `${BEGIN}
-# Polished UI Design Rules
-
-Produce polished, professional UI. Avoid the generic "AI slop" / "vibe coded"
-look — the statistical average of training data. Make deliberate choices grounded
-in the product, the user, and the brand.
-
-## Workflow (do not skip step 1)
-
-1. **Constrain first.** Establish a minimal design system before generating UI:
-   one dominant color + one accent + one neutral scale; a fixed spacing scale
-   (4/8/12/16/24/32/48/64); a limited type scale with a deliberate font (not
-   reflexively Inter). Encode as tokens (CSS variables + tokens file).
-2. **Generate against the constraints.** Supply tokens + framework config + a
-   visual reference. Be specific about what "good" means for THIS product.
-3. **Critique against the anti-patterns** below. Never ship the first output.
-4. **Add guardrails.** Lint against arbitrary values; pre-commit checks.
-
-## Anti-patterns to avoid
-
-1. Neon palettes with no hierarchy → one dominant color, one accent, one neutral.
-2. Decorative dark-mode glow → earn depth via typography/contrast/surfaces.
-3. Emojis as UI chrome → use a consistent icon system; emojis in microcopy only.
-4. Purple/indigo gradient on everything → derive color from brand and audience.
-5. Cards for every block → group with whitespace; cards = independent/interactive only.
-6. Rainbow side-tab accents → accent color is scarce; define what gets it and why.
-7. Meaningless status dots → every indicator maps to a defined, labeled state.
-
-## Token guidance
-
-- Semantic tokens (\`text-foreground\`, \`bg-background\`), never raw hex in components.
-- Spacing scale only — no arbitrary values (\`p-[13px]\`).
-- Prefer Tailwind + shadcn/ui. Same semantic names in light/dark; only values swap.
-
-## Pre-ship self-check
-
-- [ ] ONE dominant color, not competing neons?
-- [ ] Every color/effect communicates hierarchy or state?
-- [ ] Cards reserved for independent/interactive blocks?
-- [ ] Spacing from the scale (no arbitrary values)?
-- [ ] Consistent icon set (no emoji chrome)?
-- [ ] Status indicators map to a defined, labeled state?
-- [ ] Looks at home for THIS brand — not any generic AI product?
-${END}`;
+const RULES_BODY = "<!-- POLISHED-UI-SKILLS:BEGIN -->\n# Polished UI Design Rules\n\nBuild UI that is product-specific, usable, accessible, responsive, and visually intentional. Avoid generic AI-generated aesthetics, but do not ban techniques that genuinely serve the brand.\n\n## Workflow\n1. **Understand first.** Inspect existing tokens, components, fonts, icons, screenshots, and conventions. Preserve the product's system.\n2. **Constrain first.** Establish hierarchy, color roles, spacing, type, radius, surfaces, and icon conventions before generating large amounts of UI.\n3. **Design the task flow.** Define page purpose, primary action, content priority, grouping, and what can be removed. Hierarchy beats decoration.\n4. **Generate responsively.** Build around content and relationships; avoid fixed dimensions and accidental overflow.\n5. **Complete states.** Handle relevant default, hover, focus-visible, active, selected, disabled, loading, success, error, and empty states.\n6. **Audit and refine.** Test realistic content, narrow/wide layouts, keyboard flow, and non-happy paths. Fix issues before calling UI finished.\n\n## Visual rules\n- Use semantic tokens and consistent spacing/type/radius/icon/surface systems.\n- Prefer whitespace, typography, and grouping before extra cards, borders, shadows, gradients, glow, pills, or badges.\n- Avoid generic purple/indigo gradients, decorative glow, emoji UI chrome, card-everything layouts, rainbow accents, and meaningless status dots.\n- Treat these as warning signs, not absolute bans: keep a technique when it clearly serves product identity, hierarchy, or interaction.\n- Use one dominant color and scarce accents unless the product has a strong reason for more.\n- Prefer existing project components over introducing a parallel UI system.\n\n## Accessibility\n- Prefer semantic HTML and native controls.\n- All interactive elements need keyboard access and visible focus.\n- Icon-only controls need accessible names; inputs need real labels.\n- Do not communicate essential meaning with color alone.\n- Preserve logical heading/DOM order and support reduced motion.\n- Keep text readable and touch targets usable.\n\n## Responsive/content resilience\n- Test narrow mobile, tablet/laptop, and wide desktop.\n- Test long labels, localization expansion, zero/one/many results, missing media, errors, and slow loading.\n- Avoid fixed heights for content that can grow.\n- Give tables, navigation, toolbars, and dense forms a deliberate narrow-screen behavior.\n\n## Interaction\n- Give important actions immediate feedback and preserve recoverable input after errors.\n- Loading states should avoid unnecessary layout shifts.\n- Empty states should explain the situation and offer a useful next step.\n- Motion should communicate state, hierarchy, progress, or relationship—not merely decorate.\n\n## Pre-ship gate\n- [ ] Clear purpose and primary action\n- [ ] Product-specific visual identity\n- [ ] Systematic color/type/spacing/radius/icon/surface choices\n- [ ] Responsive with no accidental overflow\n- [ ] Resilient to realistic content\n- [ ] Complete relevant interaction states\n- [ ] Keyboard-operable primary flow with visible focus\n- [ ] Labels/errors/statuses do not rely on color alone\n- [ ] Reduced motion respected\n- [ ] Empty/loading/error/success states considered\n- [ ] Decorative elements earn their presence\n- [ ] Final audit/refinement pass completed\n<!-- POLISHED-UI-SKILLS:END -->";
 
 const CURSOR_FRONTMATTER = `---
 description: Polished UI design rules — avoid the generic "AI slop" / vibe-coded look. Apply when building, reviewing, or refining any frontend, component, landing page, or dashboard.
